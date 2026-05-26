@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Low End | Bass Guitar Webshop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+  <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
+    <nav class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6">
+      <a href="#" class="text-2xl font-semibold tracking-tight">The Low End</a>
+      <div class="hidden items-center gap-8 text-sm text-gray-600 md:flex">
+        <a href="browse.html" class="transition hover:text-sky-800">Shop</a>
+        <a href="#categories" class="transition hover:text-sky-800">Types</a>
+      </div>
+      <button id="cartButton" class="rounded-none border border-gray-300 px-4 py-2 text-sm font-medium transition hover:border-sky-200 hover:bg-sky-50">
+        Cart (0)
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="border-b border-gray-200 bg-sky-50/40 bg-[linear-gradient(to_right,rgba(17,24,39,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(17,24,39,0.04)_1px,transparent_1px)] bg-[size:24px_24px]">
+      <div class="mx-auto grid w-full max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 md:py-24">
+        <div>
+          <p class="text-sm uppercase tracking-[0.18em] text-gray-500">Bass Guitar Webshop</p>
+          <h1 class="mt-4 text-5xl font-semibold leading-tight tracking-tight md:text-6xl">
+            Low frequencies. High standards.
+          </h1>
+          <p class="mt-6 max-w-lg text-lg leading-8 text-gray-600">
+            Premium bass guitars, amps, and essentials.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a href="browse.html" class="border border-gray-900 bg-gray-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-sky-800">
+              Shop Basses
+            </a>
+            <a href="#categories" class="border border-gray-300 px-6 py-3 text-sm font-medium transition hover:border-sky-200 hover:bg-sky-50">
+              Browse Types
+            </a>
+          </div>
+        </div>
+        <div>
+          <img class="h-full min-h-[340px] w-full border border-gray-200 object-cover" src="img/header.webp" alt="Electric bass guitar on stand" />
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="border-y border-gray-200 bg-white">
+      <div class="mx-auto max-w-7xl px-6 py-20">
+        <div class="mb-8">
+          <p class="text-sm uppercase tracking-[0.16em] text-gray-500">Categories</p>
+          <h2 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">Everything low-end</h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          <a href="browse.html?category=basses" class="border border-gray-200 p-7 transition hover:border-sky-200 hover:bg-sky-50">
+            <h3 class="text-lg font-medium">Basses</h3>
+            <p class="mt-2 text-sm leading-6 text-gray-500">4-string, 5-string, and short scale models.</p>
+          </a>
+          <a href="browse.html?category=amplification" class="border border-gray-200 p-7 transition hover:border-sky-200 hover:bg-sky-50">
+            <h3 class="text-lg font-medium">Amplification</h3>
+            <p class="mt-2 text-sm leading-6 text-gray-500">Practice amps, stage combos, cabs, and cables.</p>
+          </a>
+          <a href="browse.html?category=accessories" class="border border-gray-200 p-7 transition hover:border-sky-200 hover:bg-sky-50">
+            <h3 class="text-lg font-medium">Accessories</h3>
+            <p class="mt-2 text-sm leading-6 text-gray-500">Strings, straps, pedals, other accessories.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-gray-200 px-6 py-16">
+    <div class="mx-auto max-w-7xl text-center">
+      <p class="text-2xl font-semibold tracking-tight text-gray-900">The Low End</p>
+      <p class="mt-3 text-base text-gray-600">Bass guitars and essentials, no clutter.</p>
+      <p class="mt-6 text-xs uppercase tracking-[0.14em] text-gray-400">© 2026 The Low End</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/script.js"></script>
+</body>
+</html>

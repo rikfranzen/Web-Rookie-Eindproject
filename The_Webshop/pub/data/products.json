@@ -1,0 +1,90 @@
+[
+  {
+    "id": "bass-j-4",
+    "category": "basses",
+    "name": "Fender Am Ultra II Jazz Bass EB NBL",
+    "description": "4 string j-bass, Body: elzen, Hals: esdoorn, Fretboard: palissander",
+    "price": 2539,
+    "image": "img/bass-j4.png"
+  },
+  {
+    "id": "bass-j-5",
+    "category": "basses",
+    "name": "Fender Am Ultra II J Bass V MN AVL",
+    "description": "5 string j-bass, Body: elzen, Geschroefde hals: esdoorn, Fingerboard: esdoorn",
+    "price": 2690,
+    "image": "img/bass-j5.png"
+  },
+  {
+    "id": "bass-p-4",
+    "category": "basses",
+    "name": "Fender AM Pro II P Bass RW DK NIGHT",
+    "description": "4 string p-bass, Body: elzen, Hals: esdoorn, Fretboard: palissander",
+    "price": 2111,
+    "image": "img/bass-p4.png"
+  },
+  {
+    "id": "bass-p-5",
+    "category": "basses",
+    "name": "Fender AM Pro II P Bass V RW OWT",
+    "description": "5 string p-bass, Body: elzen, Hals: esdoorn, Fretboard: palissander",
+    "price": 2199,
+    "image": "img/bass-p5.png"
+  },
+  {
+    "id": "amp-combo-1",
+    "category": "amplification",
+    "name": " Boss Katana-110 Bass",
+    "description": "Transistor combo, Vermogen: 60 watt, Uitgerust met: 1x 10” luidspreker & Tweeter (omschakelbaar), Controls: Pre Effects, Amp Type, Gain, Volume, Blend, Bass, Low Mid, High Mid, Treble, Post Effects, Volume",
+    "price": 359,
+    "image": "img/amp-combo1.png"
+  },
+  {
+    "id": "amp-combo-2",
+    "category": "amplification",
+    "name": "Boss Katana-210 Bass",
+    "description": "Transistor combo, Vermogen: 160 watt, Uitgerust met: 2x 10” luidspreker & Tweeter (omschakelbaar), Controls: Pre Effects, Amp Type, Gain, Volume, Blend, Bass, Low Mid, High Mid, Treble, Post Effects, Volume",
+    "price": 572,
+    "image": "img/amp-combo2.png"
+  },
+  {
+    "id": "cable-1",
+    "category": "amplification",
+    "name": "Fender Del. Cable Angle Plug 3m TN",
+    "description": "Lengte: 3 m, Met 24K vergulde 6,3 mm jackpluggen, 8 mm PVC-kap om ruis te voorkomen",
+    "price": 17.90,
+    "image": "img/cable1.png"
+  },
+  {
+    "id": "cable-2",
+    "category": "amplification",
+    "name": "Ernie Ball Instrument Cable Neon Pink 6",
+    "description": "Lengte: 6 m, Plug: 6,3 mm jack recht - 6,3 mm jack haaks, Dubbele geleider",
+    "price": 1000000,
+    "image": "img/cable2.png"
+  },
+  {
+    "id": "snare-1",
+    "category": "accessories",
+    "name": "Ernie Ball 2833 Hybrid Slinky",
+    "description": "4 Snaren, Diktes: 045 - 065 - 085 - 105",
+    "price": 17.90,
+    "image": "img/snare1.png"
+  },
+  {
+    "id": "snare-2",
+    "category": "accessories",
+    "name": "Ernie Ball 2836 Regular Slinky",
+    "description": "5 Snaren, Diktes: 045 - 065 - 080 - 100 - 130",
+    "price": 19.90,
+    "image": "img/snare2.png"
+  },
+  {
+    "id": "pick-1",
+    "category": "accessories",
+    "name": "Dunlop Nylon Max Grip 1.0 Player Pack",
+    "description": "12 stuks, Sterkte: 1.0mm",
+    "price": 7.10,
+    "image": "img/pick1.png"
+  }
+]

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse All | The Low End</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+  <header class="border-b border-gray-200 bg-white">
+    <nav class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6">
+      <a href="index.html" class="text-2xl font-semibold tracking-tight">The Low End</a>
+      <a id="cartButton" href="cart.html" class="border border-gray-300 px-4 py-2 text-sm font-medium transition hover:border-sky-200 hover:bg-sky-50">Cart (0)</a>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-16">
+    <p class="text-sm uppercase tracking-[0.16em] text-gray-500">Browse</p>
+    <h1 id="browseTitle" class="mt-2 text-4xl font-semibold tracking-tight">All gear</h1>
+    <p class="mt-4 text-gray-600">Alle producten uit de huidige catalogus.</p>
+
+    <section class="mt-10 grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
+      <aside class="h-fit border border-gray-200 p-5 lg:sticky lg:top-24">
+        <h2 class="text-lg font-semibold">Filter & sort</h2>
+
+        <form id="filtersForm" class="mt-5 space-y-4">
+          <div>
+            <label for="categorySelect" class="mb-2 block text-sm font-medium text-gray-700">Categorie</label>
+            <select id="categorySelect" name="category" class="w-full border border-gray-300 bg-white px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100">
+              <option value="">Alle categorieen</option>
+              <option value="basses">Basses</option>
+              <option value="amplification">Amplification</option>
+              <option value="accessories">Accessories</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="searchInput" class="mb-2 block text-sm font-medium text-gray-700">Zoeken</label>
+            <input id="searchInput" name="search" type="text" placeholder="Naam of omschrijving" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" />
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="minPriceInput" class="mb-2 block text-sm font-medium text-gray-700">Min prijs</label>
+              <input id="minPriceInput" name="minPrice" type="number" min="0" step="0.01" placeholder="0" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" />
+            </div>
+            <div>
+              <label for="maxPriceInput" class="mb-2 block text-sm font-medium text-gray-700">Max prijs</label>
+              <input id="maxPriceInput" name="maxPrice" type="number" min="0" step="0.01" placeholder="9999" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" />
+            </div>
+          </div>
+
+          <div>
+            <label for="sortSelect" class="mb-2 block text-sm font-medium text-gray-700">Sorteren</label>
+            <select id="sortSelect" name="sort" class="w-full border border-gray-300 bg-white px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100">
+              <option value="featured">Aanbevolen</option>
+              <option value="price-asc">Prijs: laag naar hoog</option>
+              <option value="price-desc">Prijs: hoog naar laag</option>
+              <option value="name-asc">Naam: A-Z</option>
+              <option value="name-desc">Naam: Z-A</option>
+            </select>
+          </div>
+
+          <button type="button" id="clearFiltersButton" class="w-full border border-gray-300 px-4 py-2 text-sm font-medium transition hover:border-sky-200 hover:bg-sky-50">Reset filters</button>
+        </form>
+      </aside>
+
+      <div>
+        <p id="resultsInfo" class="text-sm text-gray-500"></p>
+        <div id="productsGrid" class="mt-4 flex flex-col gap-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./js/browse.js"></script>
+</body>
+</html>

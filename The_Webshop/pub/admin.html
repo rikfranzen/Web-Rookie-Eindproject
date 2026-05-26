@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | The Low End</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+  <header class="border-b border-gray-200 bg-white">
+    <nav class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5">
+      <h1 class="text-2xl font-semibold tracking-tight">Admin</h1>
+      <a href="index.html" class="border border-gray-300 px-4 py-2 text-sm font-medium transition hover:border-gray-900">Naar webshop</a>
+    </nav>
+  </header>
+
+  <main class="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 lg:grid-cols-2">
+    <section>
+      <h2 class="text-2xl font-semibold">Productbeheer</h2>
+      <form id="productForm" class="mt-5 space-y-3 border border-gray-200 p-4">
+        <input name="name" type="text" placeholder="Productnaam" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <input name="description" type="text" placeholder="Beschrijving" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <input name="price" type="number" min="1" step="0.01" placeholder="Prijs" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <input name="image" type="url" placeholder="Afbeelding URL" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <button class="w-full border border-gray-900 bg-gray-900 py-2 text-sm font-medium text-white transition hover:bg-sky-800">Product toevoegen</button>
+      </form>
+
+      <div class="mt-4 flex gap-3">
+        <button id="resetProductsButton" class="border border-gray-300 px-4 py-2 text-sm transition hover:border-sky-200 hover:bg-sky-50">Reset producten</button>
+      </div>
+      <p id="adminFeedback" class="mt-3 text-sm"></p>
+
+      <ul id="productList" class="mt-6 space-y-3"></ul>
+    </section>
+
+    <section>
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="text-2xl font-semibold">Bestellingen</h2>
+        <button id="clearOrdersButton" class="border border-gray-300 px-3 py-1 text-xs transition hover:border-sky-200 hover:bg-sky-50">Bestellingen wissen</button>
+      </div>
+      <ul id="ordersList" class="mt-6 space-y-3"></ul>
+    </section>
+  </main>
+
+  <div id="editProductModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900/40 p-4">
+    <div class="w-full max-w-lg border border-gray-200 bg-white p-5 shadow-xl">
+      <div class="mb-4 flex items-center justify-between">
+        <h3 class="text-lg font-semibold">Product wijzigen</h3>
+        <button id="closeEditModalButton" type="button" class="border border-gray-300 px-3 py-1 text-xs">Sluiten</button>
+      </div>
+      <form id="editProductForm" class="space-y-3">
+        <input name="name" type="text" placeholder="Productnaam" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <input name="description" type="text" placeholder="Beschrijving" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <input name="price" type="number" min="1" step="0.01" placeholder="Prijs" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <input name="image" type="url" placeholder="Afbeelding URL" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <button class="w-full border border-gray-900 bg-gray-900 py-2 text-sm font-medium text-white transition hover:bg-sky-800">Wijzigingen opslaan</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="editOrderModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-gray-900/40 p-4">
+    <div class="w-full max-w-2xl border border-gray-200 bg-white p-5 shadow-xl">
+      <div class="mb-4 flex items-center justify-between">
+        <h3 class="text-lg font-semibold">Bestelling wijzigen</h3>
+        <button id="closeEditOrderModalButton" type="button" class="border border-gray-300 px-3 py-1 text-xs">Sluiten</button>
+      </div>
+      <form id="editOrderForm" class="space-y-4">
+        <input id="editOrderIdInput" name="orderId" type="text" placeholder="Order ID" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+        <input id="editOrderCreatedAtInput" name="createdAt" type="datetime-local" class="w-full border border-gray-300 px-3 py-2 outline-none transition focus:border-sky-300 focus:ring-2 focus:ring-sky-100" required />
+
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-medium">Bestelregels</p>
+            <button id="addOrderItemButton" type="button" class="border border-gray-300 px-3 py-1 text-xs transition hover:border-sky-200 hover:bg-sky-50">Regel toevoegen</button>
+          </div>
+          <div id="editOrderItems" class="space-y-3"></div>
+        </div>
+
+        <p id="editOrderTotal" class="text-sm font-medium text-gray-700"></p>
+
+        <button class="w-full border border-gray-900 bg-gray-900 py-2 text-sm font-medium text-white transition hover:bg-sky-800">Wijzigingen opslaan</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="./js/admin.js"></script>
+</body>
+</html>
