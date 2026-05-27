@@ -1,91 +1,59 @@
-# Plan van aanpak en ontwerp (eindversie)
+# Plan van aanpak (eenvoudige versie)
 
-## 1. Wat voor webshop is gemaakt?
-Ik heb een bass gear webshop gemaakt: **The Low End**.
+## Doel
+Ik heb een webshop gemaakt voor bass gear: **The Low End**.
 
-Het project bestaat uit een gebruikersdeel en een admindeel.
+## Pagina's
+- `pub/index.html` voor de homepagina
+- `pub/browse.html` voor producten en filters
+- `pub/cart.html` voor winkelwagen en afrekenen
+- `pub/admin.html` voor beheer
 
-## 2. Functionele scope van de eindversie
+## Wat de bezoeker kan
+- Producten bekijken
+- Filteren op categorie, prijs en zoektekst
+- Producten toevoegen aan winkelwagen
+- Aantallen aanpassen in de winkelwagen
+- Een bestelling plaatsen
 
-### Eindgebruiker
-- Homepagina (`index.html`) met introductie en categoriekaarten.
-- Categoriekaarten linken door naar browse met vooraf ingestelde filter:
-  - `basses`
-  - `amplification`
-  - `accessories`
-- Browsepagina (`browse.html`) met:
-  - Categorie-filter
-  - Zoekfilter
-  - Min/max-prijsfilter
-  - Sorteeropties
-  - Reset van alle filters
-- Producten toevoegen aan winkelwagen.
-- Winkelwagenpagina (`cart.html`) met:
-  - Overzicht van regels
-  - Aantal verhogen/verlagen
-  - Regel verwijderen
-  - Totaalprijs
-  - Bestelling plaatsen
+## Wat de admin kan
+- Product toevoegen
+- Product wijzigen
+- Product verwijderen
+- Producten resetten naar de startlijst
+- Bestellingen bekijken
+- Bestellingen wijzigen
+- Bestellingen verwijderen
+- Alle bestellingen wissen
 
-### Admin
-- Productbeheer op `admin.html`:
-  - Product toevoegen
-  - Product wijzigen (via modal)
-  - Product verwijderen
-  - Producten resetten naar JSON-bron
-- Bestelbeheer op `admin.html`:
-  - Bestellingen bekijken
-  - Bestelling wijzigen (via modal)
-  - Bestelling verwijderen
-  - Alle bestellingen wissen
-- In bestelling wijzigen zijn aanpasbaar:
-  - Order-ID
-  - Datum/tijd
-  - Orderregels (product + aantal)
-  - Regels toevoegen/verwijderen
+## Belangrijke regels
+- Bij product toevoegen/wijzigen is categorie verplicht
+- Categorie bepaalt waar het product in browse zichtbaar is
+- Producten blijven bewaard in `localStorage`
+- Reset in admin zet producten terug naar `pub/data/products.json`
 
-## 3. Pagina-ontwerp
+## Data en opslag
+- Startdata: `pub/data/products.json`
+- Lokale opslag: `webshop_products`
+- Lokale opslag: `webshop_cart`
+- Lokale opslag: `webshop_orders`
 
-Het project gebruikt Tailwind CSS en bestaat uit 4 pagina's:
-- `pub/index.html`
-- `pub/browse.html`
-- `pub/cart.html`
-- `pub/admin.html`
+## JavaScript bestanden
+- `pub/js/script.js` voor home
+- `pub/js/browse.js` voor filters en productlijst
+- `pub/js/cart-page.js` voor cart
+- `pub/js/admin.js` voor admin
+- `pub/js/products.js` voor productopslag
+- `pub/js/orders.js` voor bestellingen
+- `pub/js/cart.js` voor winkelwagen
+- `pub/js/validation.js` voor validatie
 
-De browsepagina gebruikt een linker filterkolom en een productlijst rechts.
+## Korte gebruikersflow
+1. Bezoeker opent home
+2. Bezoeker gaat naar browse en filtert producten
+3. Bezoeker voegt producten toe aan cart
+4. Bezoeker plaatst bestelling
+5. Admin beheert producten en bestellingen
 
-## 4. Data en opslag
-
-- Productbron: `pub/data/products.json`
-- Lokale opslag via `localStorage`:
-  - `webshop_products`
-  - `webshop_cart`
-  - `webshop_orders`
-
-Belangrijke keuze in de eindversie:
-- Producten worden bij laden opnieuw gesynchroniseerd vanaf `products.json`.
-- Producten hebben een expliciet `category` veld voor stabiele filtering.
-
-## 5. JavaScript-structuur (actief gebruikt)
-
-- `pub/js/script.js` → homepagina gedrag (cart label / navigatie)
-- `pub/js/browse.js` → filters, sortering, productrender op browse
-- `pub/js/cart-page.js` → cartpagina interactie + bestellen
-- `pub/js/admin.js` → product- en orderbeheer + modals
-
-Gedeelde modules:
-- `pub/js/products.js`
-- `pub/js/cart.js`
-- `pub/js/orders.js`
-- `pub/js/storage.js`
-- `pub/js/constants.js`
-- `pub/js/validation.js` (voor productvalidatie in admin)
-
-## 6. Gebruikersflow (eindversie)
-
-1. Bezoeker opent homepagina.
-2. Bezoeker gaat naar browse (optioneel via categoriekaart met vooringestelde filter).
-3. Bezoeker filtert/sorteert producten en voegt items toe aan cart.
-4. Bezoeker beheert aantallen in cart en plaatst bestelling.
-5. Bestelling wordt opgeslagen in `localStorage`.
-6. Admin opent adminpagina en kan producten/bestellingen beheren en aanpassen.
+## Live website
+- `https://thelowend.netlify.app`

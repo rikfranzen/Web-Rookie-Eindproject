@@ -1,2 +1,5 @@
+# macOS helper file
 .DS_Store
+
+# Node.js dependencies (can always be reinstalled)
 node_modules/
