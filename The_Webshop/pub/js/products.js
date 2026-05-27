@@ -4,7 +4,10 @@ import { readStorage, writeStorage } from './storage.js';
 const PRODUCTS_JSON_PATH = './data/products.json';
 
 export async function ensureProductsLoaded() {
-  // Always sync with the JSON source so file changes are directly visible in all pages.
+  const existingProducts = getProducts();
+  if (Array.isArray(existingProducts) && existingProducts.length > 0) {
+    return existingProducts;
+  }
   return resetProductsToDefault();
 }
 

@@ -15,6 +15,7 @@ export function validateCheckoutForm(formData) {
 
 export function validateProductForm(formData) {
   const errors = [];
+  const allowedCategories = ['basses', 'amplification', 'accessories'];
 
   if (!formData.name || formData.name.trim().length < 2) {
     errors.push('Productnaam moet minimaal 2 tekens bevatten.');
@@ -22,6 +23,10 @@ export function validateProductForm(formData) {
 
   if (!formData.description || formData.description.trim().length < 4) {
     errors.push('Beschrijving moet minimaal 4 tekens bevatten.');
+  }
+
+  if (allowedCategories.indexOf(formData.category) === -1) {
+    errors.push('Kies een geldige categorie.');
   }
 
   const price = Number(formData.price);

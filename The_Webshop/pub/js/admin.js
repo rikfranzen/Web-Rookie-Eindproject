@@ -21,6 +21,11 @@ const editOrderItems = document.querySelector('#editOrderItems');
 const editOrderTotal = document.querySelector('#editOrderTotal');
 const addOrderItemButton = document.querySelector('#addOrderItemButton');
 const closeEditOrderModalButton = document.querySelector('#closeEditOrderModalButton');
+const CATEGORY_LABELS = {
+  basses: 'Basses',
+  amplification: 'Amplification',
+  accessories: 'Accessories'
+};
 
 let activeEditProductId = null;
 let activeEditOrderId = null;
@@ -38,11 +43,23 @@ function setFeedback(message, isError = false) {
 }
 
 function getProductNameById(productId) {
-  return getProducts().find((product) => product.id === productId)?.name || productId;
+  const products = getProducts();
+  for (let i = 0; i < products.length; i += 1) {
+    if (products[i].id === productId) {
+      return products[i].name;
+    }
+  }
+  return productId;
 }
 
 function getProductPriceById(productId) {
-  return getProducts().find((product) => product.id === productId)?.price || 0;
+  const products = getProducts();
+  for (let i = 0; i < products.length; i += 1) {
+    if (products[i].id === productId) {
+      return products[i].price;
+    }
+  }
+  return 0;
 }
 
 function openEditModal(productId) {
@@ -53,6 +70,7 @@ function openEditModal(productId) {
   activeEditProductId = productId;
   editProductForm.name.value = product.name;
   editProductForm.description.value = product.description;
+  editProductForm.category.value = product.category || '';
   editProductForm.price.value = String(product.price);
   editProductForm.image.value = product.image;
   editProductModal.classList.remove('hidden');
@@ -150,8 +168,14 @@ function closeEditOrderModal() {
 
 function updateProduct(productId, formData) {
   const products = getProducts();
-  const product = products.find((item) => item.id === productId);
-  if (!product) return;
+  let found = false;
+  for (let i = 0; i < products.length; i += 1) {
+    if (products[i].id === productId) {
+      found = true;
+      break;
+    }
+  }
+  if (!found) return;
 
   const errors = validateProductForm(formData);
   if (errors.length > 0) {
@@ -159,19 +183,18 @@ function updateProduct(productId, formData) {
     return;
   }
 
-  const updatedProducts = products.map((item) =>
-    item.id === productId
-      ? {
-          ...item,
-          name: formData.name.trim(),
-          description: formData.description.trim(),
-          price: Number(formData.price),
-          image: formData.image.trim()
-        }
-      : item
-  );
+  for (let i = 0; i < products.length; i += 1) {
+    if (products[i].id === productId) {
+      products[i].name = formData.name.trim();
+      products[i].description = formData.description.trim();
+      products[i].category = formData.category;
+      products[i].price = Number(formData.price);
+      products[i].image = formData.image.trim();
+      break;
+    }
+  }
 
-  saveProducts(updatedProducts);
+  saveProducts(products);
   setFeedback('Product aangepast.');
   renderProducts();
   renderOrders();
@@ -179,15 +202,16 @@ function updateProduct(productId, formData) {
 
 function renderProducts() {
   const products = getProducts();
-
-  productList.innerHTML = products
-    .map(
-      (product) => `
+  let html = '';
+  for (let i = 0; i < products.length; i += 1) {
+    const product = products[i];
+    html += `
         <li class="rounded border border-gray-200 p-3">
           <div class="flex items-start justify-between gap-3">
             <div>
               <p class="font-semibold">${product.name}</p>
               <p class="text-sm text-gray-500">${product.description}</p>
+              <p class="text-xs text-gray-500">Categorie: ${CATEGORY_LABELS[product.category] || product.category || '-'}</p>
               <p class="text-sm font-medium">${formatPrice(product.price)}</p>
             </div>
             <div class="flex gap-2">
@@ -196,13 +220,19 @@ function renderProducts() {
             </div>
           </div>
         </li>
-      `
-    )
-    .join('');
+      `;
+  }
+  productList.innerHTML = html;
 
   document.querySelectorAll('[data-delete-id]').forEach((button) => {
     button.addEventListener('click', () => {
-      const filtered = getProducts().filter((product) => product.id !== button.dataset.deleteId);
+      const allProducts = getProducts();
+      const filtered = [];
+      for (let i = 0; i < allProducts.length; i += 1) {
+        if (allProducts[i].id !== button.dataset.deleteId) {
+          filtered.push(allProducts[i]);
+        }
+      }
       saveProducts(filtered);
       setFeedback('Product verwijderd.');
       renderProducts();
@@ -283,6 +313,7 @@ productForm.addEventListener('submit', (event) => {
   const formData = {
     name: productForm.name.value,
     description: productForm.description.value,
+    category: productForm.category.value,
     price: productForm.price.value,
     image: productForm.image.value
   };
@@ -298,6 +329,7 @@ productForm.addEventListener('submit', (event) => {
     id: `${formData.name.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}`,
     name: formData.name.trim(),
     description: formData.description.trim(),
+    category: formData.category,
     price: Number(formData.price),
     image: formData.image.trim()
   });
@@ -328,6 +360,7 @@ editProductForm.addEventListener('submit', (event) => {
   const formData = {
     name: editProductForm.name.value,
     description: editProductForm.description.value,
+    category: editProductForm.category.value,
     price: editProductForm.price.value,
     image: editProductForm.image.value
   };
